@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import image from "../Assets/Image/task.png";
+import { AuthContext } from "../Contexts/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut().then(console.log);
+  };
   return (
     <div>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -38,37 +43,33 @@ const Navbar = () => {
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <Link
-                  to={`/`}
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Home
-                </Link>
+                <Link to={`/`}>Home</Link>
               </li>
               <li>
-                <Link
-                  to={`/add_task`}
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Add Task
-                </Link>
+                <Link to={`/add_task`}>Add Task</Link>
               </li>
               <li>
-                <Link
-                  to={`/my_task`}
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  My Task
-                </Link>
+                <Link to={`/my_task`}>My Task</Link>
               </li>
               <li>
-                <Link
-                  to={`/completed_task`}
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Completed Task
-                </Link>
+                <Link to={`/completed_task`}>Completed Task</Link>
               </li>
+              {user?.uid ? (
+                <>
+                  <li>
+                    <button onClick={handleLogOut}>Sign Out</button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to={`/login`}>Log In</Link>
+                  </li>
+                  <li>
+                    <Link to={`/signup`}>Sign Up</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

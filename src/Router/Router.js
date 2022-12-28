@@ -1,6 +1,8 @@
 import AddTask from "../Pages/AddTask";
 import CompletedTask from "../Pages/CompletedTask";
+import Login from "../Pages/Login";
 import MyTask from "../Pages/MyTask";
+import Signup from "../Pages/SignUp";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../Layouts/Main");
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
                 path: '/completed_task',
                 element: <CompletedTask/>,
             },
+            {
+                path: '/signup',
+                element: <Signup/>
+            },
+            {
+                path: '/login',
+                element: <Login/>
+            }
         ]
     }
 ])
