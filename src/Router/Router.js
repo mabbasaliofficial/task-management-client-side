@@ -3,6 +3,7 @@ import CompletedTask from "../Pages/CompletedTask";
 import Login from "../Pages/Login";
 import MyTask from "../Pages/MyTask";
 import Signup from "../Pages/SignUp";
+import PrivateRoute from "./PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../Layouts/Main");
@@ -19,15 +20,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/add_task',
-                element: <AddTask/>,
+                element: <PrivateRoute><AddTask/></PrivateRoute>,
             },
             {
                 path: '/my_task',
-                element: <MyTask/>,
+                element: <PrivateRoute><MyTask/></PrivateRoute>,
             },
             {
                 path: '/completed_task',
-                element: <CompletedTask/>,
+                element: <PrivateRoute><CompletedTask/></PrivateRoute>,
             },
             {
                 path: '/signup',
