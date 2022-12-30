@@ -3,8 +3,10 @@ import { toast } from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthProvider";
+import useTitle from "../Hooks/useTitle";
 
 const Login = () => {
+  useTitle('Login');
   const { signIn , googleSignIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ const Login = () => {
   };
   return (
     <div className="lg:w-1/3 mx-auto border p-10 rounded">
+       <h3 className="text-3xl font-bold text-center mb-10">Log In</h3>
       <form onSubmit={handleLogIn}>
         <div class="relative z-0 mb-6 w-full group">
           <input
@@ -75,13 +78,14 @@ const Login = () => {
           </label>
         </div>
 
-        <input
+        <button
           type="submit"
-          value="Log In"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        />
+          class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 w-full"
+        >
+          Log In
+        </button>
       </form>
-      <button onClick={googleLogin} type="button"  className="mt-5 justify-center text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2 w-full"><FaGoogle className="mr-2"/> <span> Sign In With Google</span></button>
+      <button onClick={googleLogin} type="button"    class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex justify-center items-center dark:focus:ring-[#4285F4]/55 mr-2 mt-5 mb-2 w-full"><FaGoogle className="mr-2"/> <span> Sign In With Google</span></button>
     </div>
   );
 };

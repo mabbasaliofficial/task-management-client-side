@@ -4,8 +4,10 @@ import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { FaTrashAlt } from "react-icons/fa";
 import { AuthContext } from "../Contexts/AuthProvider";
+import useTitle from "../Hooks/useTitle";
 
 const CompletedTask = () => {
+  useTitle('Completed Task');
   const { user } = useContext(AuthContext);
   const {
     data: tasks = [],

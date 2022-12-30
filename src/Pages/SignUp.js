@@ -3,14 +3,16 @@ import { AuthContext } from "../Contexts/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
+import useTitle from "../Hooks/useTitle";
 
 const Signup = () => {
+  useTitle("Signup");
   const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSignUp = (event) => {
     event.preventDefault();
-    const form = event.target
-    const name = form.name.value
+    const form = event.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
     createUser(email, password)
@@ -23,7 +25,7 @@ const Signup = () => {
         };
         updateUser(userInfo)
           .then(() => {
-            navigate(`/`)
+            navigate(`/`);
             form.reset();
           })
           .catch((err) => console.error(err));
@@ -33,21 +35,21 @@ const Signup = () => {
       });
   };
 
-
-const googleLogin = () => {
-  googleSignIn()
-    .then((result) => {
-      const user = result.user;
-      console.log(user);
-      toast.success("User added successfully");
-      navigate(`/`);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
+  const googleLogin = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("User added successfully");
+        navigate(`/`);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div className="lg:w-1/3 mx-auto border p-10 rounded">
+      <h3 className="text-3xl font-bold text-center mb-10">Sign Up</h3>
       <form onSubmit={handleSignUp}>
         <div className="relative z-0 mb-6 w-full group">
           <input
@@ -97,10 +99,21 @@ const googleLogin = () => {
             Password
           </label>
         </div>
-
-       <input type="submit" value="Sign Up"  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"/>
+        <button
+          type="submit"
+          class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 w-full"
+        >
+          Sign Up
+        </button>
       </form>
-   <button onClick={googleLogin} type="button"  className="mt-5 justify-center text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2 w-full"><FaGoogle className="mr-2"/> <span> Sign In With Google</span></button>
+
+      <button
+        onClick={googleLogin}
+        type="button"
+        class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex justify-center items-center dark:focus:ring-[#4285F4]/55 mr-2 mt-5 mb-2 w-full"
+      >
+        <FaGoogle className="mr-2" /> <span> Sign In With Google</span>
+      </button>
     </div>
   );
 };

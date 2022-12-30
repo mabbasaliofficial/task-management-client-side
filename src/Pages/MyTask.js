@@ -4,8 +4,10 @@ import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { FaInfoCircle, FaQuestionCircle, FaTrashAlt } from "react-icons/fa";
 import { AuthContext } from "../Contexts/AuthProvider";
+import useTitle from "../Hooks/useTitle";
 
 const MyTask = () => {
+  useTitle('My Task');
   const { user } = useContext(AuthContext);
   const { data: tasks = [], refetch } = useQuery({
     queryKey: ["tasks"],
