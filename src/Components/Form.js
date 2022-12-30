@@ -125,7 +125,7 @@ const Form = () => {
         </div>
       ) : (
         <div className="mt-10">
-          <h2 className="text-2xl font-bold ">No tasks have been added yet</h2>
+          <h2 className="text-2xl font-bold text-center">No tasks have been added yet</h2>
         </div>
       )}
     </div>

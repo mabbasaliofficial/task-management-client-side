@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button, Tooltip } from "flowbite-react";
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
-import { FaInfoCircle, FaQuestionCircle, FaTrashAlt } from "react-icons/fa";
+import {  FaTrashAlt } from "react-icons/fa";
 import { AuthContext } from "../Contexts/AuthProvider";
 import useTitle from "../Hooks/useTitle";
 
@@ -44,7 +44,7 @@ const MyTask = () => {
       });
   };
   return (
-    <div>
+    <div className="pb-[500px]">
       {tasks.length > 0 ? (
         <div>
           <h3 className="text-3xl font-bold text-center py-5">My Task</h3>
@@ -125,7 +125,7 @@ const MyTask = () => {
         </div>
       ) : (
         <div className="mt-10">
-          <h2 className="text-2xl font-bold ">No tasks have been added yet</h2>
+          <h2 className="text-2xl font-bold text-center">No tasks have been added yet</h2>
         </div>
       )}
     </div>

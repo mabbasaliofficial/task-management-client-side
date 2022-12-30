@@ -5,7 +5,7 @@ import useTitle from '../Hooks/useTitle';
 const Home = () => {
     useTitle('Home')
     return (
-        <div>
+        <div className='pb-[500px]'>
             <Form/>
         </div>
     );

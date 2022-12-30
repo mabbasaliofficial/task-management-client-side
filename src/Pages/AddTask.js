@@ -11,7 +11,6 @@ const AddTask = () => {
   const imgHostKey = process.env.REACT_APP_imgbb_key;
   const {
     register,
-    formState: { errors },
     handleSubmit,
   } = useForm();
 
@@ -58,6 +57,7 @@ const AddTask = () => {
   };
 
   return (
+    <div className="pb-[500px]">
     <div className="lg:w-1/2 mx-auto border p-10 rounded">
       <form onSubmit={handleSubmit(handleTask)}>
         <div className="grid md:grid-cols-2 md:gap-6">
@@ -121,12 +121,13 @@ const AddTask = () => {
 
         <div className="w-full">
           <input
-            className="text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="submit"
             value="Submit"
           />
         </div>
       </form>
+      </div>
     </div>
   );
 };

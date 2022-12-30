@@ -46,7 +46,7 @@ const CompletedTask = () => {
       });
   };
   return (
-    <div>
+    <div className="pb-[500px]">
       {tasks.length > 0 ? (
         <div>
           <h3 className="text-3xl font-bold text-center py-5">Completed Task</h3>
@@ -127,7 +127,7 @@ const CompletedTask = () => {
         </div>
       ) : (
         <div className="mt-10">
-          <h2 className="text-2xl font-bold ">No tasks have been completed yet</h2>
+          <h2 className="text-2xl font-bold text-center">No tasks have been completed yet</h2>
         </div>
       )}
     </div>

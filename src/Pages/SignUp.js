@@ -48,6 +48,7 @@ const Signup = () => {
       });
   };
   return (
+    <div className="pb-[500px]">
     <div className="lg:w-1/3 mx-auto border p-10 rounded">
       <h3 className="text-3xl font-bold text-center mb-10">Sign Up</h3>
       <form onSubmit={handleSignUp}>
@@ -101,7 +102,7 @@ const Signup = () => {
         </div>
         <button
           type="submit"
-          class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 w-full"
+          class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 w-full"
         >
           Sign Up
         </button>
@@ -114,6 +115,7 @@ const Signup = () => {
       >
         <FaGoogle className="mr-2" /> <span> Sign In With Google</span>
       </button>
+    </div>
     </div>
   );
 };
