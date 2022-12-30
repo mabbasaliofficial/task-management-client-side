@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@anatoliygatt/dark-mode-toggle": "^1.0.1",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@tanstack/react-query": "^4.20.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -11,6 +14,7 @@
     "flowbite": "^1.5.5",
     "flowbite-react": "^0.3.7",
     "react": "^18.2.0",
+    "react-dark-mode-toggle": "^0.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.41.2",
     "react-hot-toast": "^2.4.0",

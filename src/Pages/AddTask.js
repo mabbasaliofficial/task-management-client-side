@@ -7,7 +7,6 @@ import { AuthContext } from "../Contexts/AuthProvider";
 const AddTask = () => {
   const { user } = useContext(AuthContext);
   const imgHostKey = process.env.REACT_APP_imgbb_key;
-  console.log(imgHostKey)
   const {
     register,
     formState: { errors },
@@ -17,6 +16,12 @@ const AddTask = () => {
   const navigate = useNavigate();
 
   const handleTask = (data) => {
+    if (data.task.length === 0) {
+      return toast.error("Task is empty");
+    }
+    if (!data.image[0]) {
+      return toast.error("Image is required");
+    }
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -28,14 +33,13 @@ const AddTask = () => {
       .then((res) => res.json())
       .then((imgData) => {
         if (imgData.success) {
-          console.log(imgData.data.url);
           const tasks = {
             task: data.task,
             email: user?.email,
             image: imgData.data.url,
           };
 
-          fetch("http://localhost:5000/quicktask", {
+          fetch("https://pre-albatros-server.vercel.app/quicktask", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -52,7 +56,7 @@ const AddTask = () => {
   };
 
   return (
-    <div className="w-1/2 mx-auto border p-10 rounded">
+    <div className="lg:w-1/2 mx-auto border p-10 rounded">
       <form onSubmit={handleSubmit(handleTask)}>
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="relative z-0 mb-6 w-full group">
@@ -60,7 +64,7 @@ const AddTask = () => {
               Your Task
             </label>
             <input
-              {...register("task", { required: "Task is required" })}
+              {...register("task")}
               type="text"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Write Your Task"
@@ -85,6 +89,7 @@ const AddTask = () => {
             for="dropzone-file"
             className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
           >
+            Upload Image
             <div className="flex flex-col items-center justify-center pt-5 pb-6">
               <svg
                 aria-hidden="true"
@@ -108,12 +113,7 @@ const AddTask = () => {
                 SVG, PNG, JPG or GIF (MAX. 800x400px)
               </p>
             </div>
-            <input
-              id="dropzone-file"
-              type="file"
-              {...register("image", { required: "Image is required" })}
-              className="hidden"
-            />
+            <input id="dropzone-file" type="file" {...register("image")} className="hidden" />
           </label>
         </div>
 
